@@ -1,0 +1,22 @@
+<svg width="110" height="210" viewBox="0 0 110 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_i_424_4441)">
+<ellipse cx="4.99998" cy="105" rx="105" ry="105" fill="url(#paint0_linear_424_4441)"/>
+</g>
+<defs>
+<filter id="filter0_i_424_4441" x="-100" y="0" width="210" height="210" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_innerShadow_424_4441"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="9.72973"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.26 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_424_4441"/>
+</filter>
+<linearGradient id="paint0_linear_424_4441" x1="-92.8511" y1="64.3404" x2="30.9149" y2="116.17" gradientUnits="userSpaceOnUse">
+<stop stop-color="#DECAFF"/>
+<stop offset="1" stop-color="#691EE2"/>
+</linearGradient>
+</defs>
+</svg>
