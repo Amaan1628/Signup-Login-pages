@@ -1,7 +1,21 @@
+'use client'
+import React, { useState } from 'react';
 import Link from 'next/link';
+import OtpVerification from './_components/otpVerification';
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
 
 
 const Login = () => {
+  
+  const [sendOtp,setSendOtp] = useState(false);
+
+  function handleOtp() {
+    setSendOtp(true);
+    
+  }
+
   return (
     //main screen
     <div className="h-screen flex ">
@@ -34,23 +48,47 @@ const Login = () => {
       {/* //white div */}
       <div className="flex flex-col w-5/12 bg-white ">
         <div className="flex flex-col items-center justify-center h-full space-y-6">
+          {/* //Sending OTP for Logging in */}
+          {sendOtp ? <>
+          <OtpVerification/>
+          <div className="flex justify-end w-[55%]">
+            <h4 className="text-[#11068C] font-semibold text-[14px] font-regular font-Roboto">
+              Time{" "}
+              <Link href="/signup">
+                <span className="text-[#B5B5DF] text-[16px] font-Roboto font-semibold cursor-pointer">
+                  Resend Code
+                </span>
+              </Link>
+            </h4>
+          </div>
+          <Button 
+            className='p-6'
+            variant={"authButton"}>
+             Log in
+          </Button>
+          </>
+          :
+          <>
           <h2 className=" font-semibold font-Roboto text-3xl text-textPurple ">
             Login to your account
           </h2>
           <div className="flex flex-col  items-start">
-            <label className="pl-3 text-textColor text-[16px] font-medium font-Roboto">
-              Email
-            </label>
-            <input
-              className="bg-emailButton rounded-[12px] w-[482px] p-3 placeholder:text-textColor text-black font-normal font-Roboto "
-              type="email"
-              placeholder="xyz@gmail.com"
-              required
-            />
-          </div>
-          <button className=" bg-OTPButton rounded-[12px] w-[482px] text-white p-3 font-semibold font-Roboto">
+          <label className="pl-3 text-textColor text-[16px] font-medium font-Roboto">
+            Email
+          </label>
+          <Input
+            className="bg-emailButton rounded-[12px] w-[482px] p-6 border-none placeholder:text-textColor text-black font-normal font-Roboto "
+            type="email"
+            placeholder="xyz@gmail.com"
+            required
+          />
+        </div>
+        <Button 
+          className='p-6'
+          variant={"authButton"}
+          onClick={handleOtp}>
             Send OTP
-          </button>
+        </Button>
           <div className="flex justify-end w-[55%]">
             <h4 className="text-textColor  text-[14px] font-regular font-Roboto">
               Dont have an account?{" "}
@@ -61,6 +99,7 @@ const Login = () => {
               </Link>
             </h4>
           </div>
+          </> }
 
           <div className="flex justify-center  items-center space-x-2">
 
@@ -70,14 +109,14 @@ const Login = () => {
             
           </div>
           
-          <button className="flex gap-4 justify-center border-2 border-borderColor w-[482px] rounded-[12px] p-3 text-textColor text-[16px] font-medium font-Roboto">
+          <Button className="flex gap-4 justify-center border-2 bg-white border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto">
             <img src="/GoogleIcon.png" alt="google icon" />
             Continue with Google
-          </button>
-          <button className="flex gap-4 justify-center border-2 border-borderColor w-[482px] rounded-[12px] p-3 text-textColor text-[16px] font-medium font-Roboto">
+          </Button>
+          <Button className="flex gap-4 justify-center border-2 bg-white border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto">
             <img src="/GithubIcon.png" alt="github icon"/>
             Continue with Github
-          </button>
+          </Button>
           
         </div>
       </div>
