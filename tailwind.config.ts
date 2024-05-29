@@ -78,7 +78,7 @@ const config = {
         '642':'642px'
       },
       fontFamily: {
-        Roboto: ['Roboto', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
         Syne: ['syne','sans-serif'],
         RobotoSerif: ['Roboto Serif','sans-serif']
       },

@@ -3,7 +3,14 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Roboto } from "next/font/google";
 
+const roboto = Roboto({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+  weight: ['100', '300', '500', '700', '900'],
+});
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,7 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          poppins.className,
+          poppins.className,roboto.className,
           " bg-no-repeat bg-[#130736] w-full overflow-x-hidden"
         )}
       >
