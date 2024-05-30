@@ -1,40 +1,65 @@
 import React from "react";
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Roboto } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-export default function codeChallenge() {
+type Props = {}
+
+const roboto = Roboto({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-roboto',
+    weight: ['100', '300', '500', '700', '900'],
+  });
+
+export default function codeChallenge(props: Props) {
     return (
         // Main Screen
         <div className="flex h-screen">
             {/* sidebar */}
             <div className="bg-[#0B0D1B] h-screen w-[15%]">
                 <div className="flex flex-col gap-[400px]">
-                    <div className="p-6 flex flex-col gap-10">
-                        <h1 className="font-roboto font-bold text-[30px]">Mocsha</h1>
-                        <div className="flex space-x-2 items-center">
-                            <img className="w-[20px] h-[18px]" src="/codechallenge/home-challenge.png" alt="home" />
-                            <h2 className="text-[20px] font-roboto">Challenges</h2>
+                    <div className=" flex flex-col ">
+                        <h1 className={cn("font-roboto font-bold text-[30px] h-20 p-4", roboto.className)}>Mocsha</h1>
+
+                        <div>
+                            <Button className=" flex justify-start items-center gap-3 bg-[#6843CD] hover:bg-[#6843CD] rounded-none w-full h-[71px]">
+                                <img className="w-[20px] h-[18px]" src="/codechallenge/home-challenge.png" alt="home" />
+                                <h2 className="text-[20px] font-roboto text-white">Challenges</h2>
+                            </Button>
+                            
                         </div>
-                        <div className="flex space-x-2 items-center font-Roboto">
-                            <img src="/codechallenge/flag-challenge.png" alt="flag" />
-                            <h2 className="text-[20px] font-roboto">Flagged</h2>
+                        <div>
+                            <Button className=" flex justify-start items-center gap-3 hover:bg-[#6843CD] bg-[#0B0D1B] rounded-none w-full h-[71px]">
+                                <img src="/codechallenge/flag-challenge.png" alt="flag" />
+                                <h2 className="text-[20px] font-roboto text-white">Flagged</h2>
+                            </Button>
                         </div>
-                        <div className="flex space-x-2 items-center font-Roboto">
-                            <img src="/codechallenge/teams-challenge.png" alt="teams" />
-                            <h2 className="text-[20px] font-roboto">Teams</h2>
+                        <div>
+                            <Button className=" flex justify-start items-center gap-3 hover:bg-[#6843CD] bg-[#0B0D1B] rounded-none w-full h-[71px]">
+                                <img src="/codechallenge/teams-challenge.png" alt="teams" />
+                                <h2 className="text-[20px] font-roboto text-white">Teams</h2>
+                            </Button>
                         </div>
-                        <div className="flex space-x-2 items-center font-Roboto">
-                            <img src="/codechallenge/settings-challenge.png" alt="settings" />
-                            <h2 className="text-[20px] font-roboto">Settings</h2>
+                        <div>
+                            <Button className=" flex justify-start items-center gap-3 hover:bg-[#6843CD] bg-[#0B0D1B] rounded-none w-full h-[71px]">
+                                <img src="/codechallenge/settings-challenge.png" alt="settings" />
+                                <h2 className="text-[20px] font-roboto text-white">Settings</h2>
+                            </Button>
                         </div>
-                        <div className="flex space-x-2 items-center font-Roboto">
-                            <img src="/codechallenge/help-challenge.png" alt="help" />
-                            <h2 className="text-[20px] font-roboto">Help Center</h2>
+                        <div>
+                            <Button className=" flex justify-start items-center gap-3 hover:bg-[#6843CD] bg-[#0B0D1B] rounded-none w-full h-[71px]">
+                                <img src="/codechallenge/help-challenge.png" alt="help" />
+                                <h2 className="text-[20px] font-roboto text-white">Help Center</h2>
+                            </Button>
                         </div>
                     </div>
-                    <div className="flex space-x-2 items-center font-Roboto p-6">
-                        <img src="/codechallenge/logout-challenge.png" alt="logout" />
-                        <h2 className="text-[20px] font-roboto">Log out</h2>
+                    <div>
+                        <Button className=" flex justify-start items-center gap-3 hover:bg-[#6843CD] bg-[#0B0D1B] rounded-none w-full h-[71px]">
+                            <img src="/codechallenge/logout-challenge.png" alt="logout" />
+                            <h2 className="text-[20px] font-roboto text-white">Log out</h2>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -58,7 +83,7 @@ export default function codeChallenge() {
 
                 {/* //challenge*/}
                 <div className="bg-white h-12 w-[98%] ml-[15px] rounded-lg shadow-md flex items-center pl-5">
-                    <h2 className="text-[#383333] font-semibold font-Roboto text-2xl">Challenge</h2>
+                    <h2 className="text-[#383333] font-semibold text-2xl">Challenge</h2>
                 </div>
 
                 {/* //challenge  header*/}
@@ -75,7 +100,7 @@ export default function codeChallenge() {
 
                     <div className="flex justify-between pl-[200px]">
                         <div className=" flex flex-col gap-4 pt-2">
-                            <h2 className=" text-black text-[2rem] font-semibold font-Roboto">CodeCraft Challenge</h2>
+                            <h2 className=" text-black text-[2rem] font-semibold font-roboto">CodeCraft Challenge</h2>
 
                             <div className="flex gap-3">
                                 <div className="bg-[#F6F5FF] text-textColor rounded-[6px] text-[15px] p-1 font-roboto">Marketing</div>
@@ -112,10 +137,10 @@ export default function codeChallenge() {
                     <div className="bg-white w-[75%] h-[440px] ml-[15px] rounded-xl shadow-md">
                         <div className="p-5 flex flex-col gap-2">
                             <h1 className="text-[#282828] font-roboto font-semibold text-[18px]">Description</h1>
-                            <p className="text-[#4D4D4D] font-roboto font-semibold text-[15px]">The GRE and TOEFL hackathon will help empower you in your study abroad journey. We are looking to support you in your journey by providing free prep materials, scholarships and discounts. Register for the challenge and make the most of this opportunity to fulfill your dream of studying at one of the top universities across the world, in the US, Canada, UK and Australia.</p>
-
+                            <p className={cn("text-[#4D4D4D] font-roboto font-semibold text-[15px]", roboto.className)}>The GRE and TOEFL hackathon will help empower you in your study abroad journey. We are looking to support you in your journey by providing free prep materials, scholarships and discounts. Register for the challenge and make the most of this opportunity to fulfill your dream of studying at one of the top universities across the world, in the US, Canada, UK and Australia.</p>
+                            
                             <h1 className="text-[#282828] font-roboto font-semibold text-[18px]">Eligibility Criteria</h1>
-                            <p className="text-[#4D4D4D] font-roboto font-semibold text-[15px]">The GRE and TOEFL hackathon will help empower you in your study abroad journey. We are looking to support you in your journey by providing free prep materials, scholarships and discounts. Register for the challenge and make the most of this opportunity to fulfill your dream of studying at one of the top universities across the world, in the US, Canada, UK and Australia.</p>
+                            <p className="text-[#4D4D4D] font-semibold text-[15px]">The GRE and TOEFL hackathon will help empower you in your study abroad journey. We are looking to support you in your journey by providing free prep materials, scholarships and discounts. Register for the challenge and make the most of this opportunity to fulfill your dream of studying at one of the top universities across the world, in the US, Canada, UK and Australia.</p>
 
                             <h1 className="text-[#282828] font-roboto font-semibold text-[18px]">Instructions</h1>
                             <p className="text-[#4D4D4D] font-roboto font-semibold text-[15px]">1. Environment Setup: Ensure that your development environment is ready with the necessary tools and dependencies. Check the test description for any specific requirements.</p>
@@ -129,7 +154,6 @@ export default function codeChallenge() {
                         <div className="bg-white h-[50%] w-[382px] rounded-xl shadow-md">
                             <div className="p-6 flex flex-col gap-2">
                                 <h2 className="text-black font-roboto font-semibold">Social Share</h2>
-                                <h2 className="text-black font-sans font-semibold">Social Share</h2>
                                 <div className="flex gap-7">
                                     <img src="/codechallenge/fb-challenge.png" alt="social icons"/>
                                     <img src="/codechallenge/insta-challenge.png" alt="social icons"/>
@@ -141,7 +165,7 @@ export default function codeChallenge() {
                                 placeholder="Enter Email"
                                 type="text"
                                 required />
-                                <p className="text-textPurple font-semibold pl-[280px]">Invite</p>
+                                <p className="text-[#6843CD] font-semibold pl-[280px] cursor-pointer">Invite</p>
                             </div>
                         </div>
 
@@ -149,9 +173,12 @@ export default function codeChallenge() {
                         <div className="bg-white h-[50%] w-[382px] rounded-xl shadow-md">
                             <div className="p-6 flex flex-col gap-2">
                                 <h2 className="text-black font-semibold">Teammates</h2>
-                                <div className="border-2 rounded-lg border-[#BBB5B5] p-2">
-                                    <h2 className="text-[#212121] font-semibold">Madhav</h2>
-                                    <h3 className="text-[#212121]">Madhav@gmail.com</h3>
+                                <div className="border-2 rounded-lg border-[#BBB5B5]">
+                                    <div className="bg-[#FDF4E7] text-[#E18D0E] h-[25px] w-[70px] pl-1 ml-[262px] rounded-tr-lg">Pending</div>
+                                    <div className="pl-4 pb-4">
+                                        <h2 className="text-[#212121] font-semibold">Madhav</h2>
+                                        <h3 className="text-[#212121]">Madhav@gmail.com</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>

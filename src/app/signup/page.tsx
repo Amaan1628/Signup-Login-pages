@@ -116,11 +116,11 @@ const signup = () => {
                 
                 </div>
                 
-                <Button className="flex gap-4 justify-center border-2 border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto">
+                <Button className="flex gap-4 justify-center border-2 bg-white border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto">
                     <img src="/GoogleIcon.png" alt="google icon" />
                     Continue with Google
                 </Button>
-                <Button className="flex gap-4 justify-center border-2 border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto">
+                <Button className="flex gap-4 justify-center border-2 bg-white border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto">
                     <img src="/GithubIcon.png" alt="github icon"/>
                     Continue with Github
                 </Button>

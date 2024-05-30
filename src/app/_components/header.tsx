@@ -18,7 +18,7 @@ export const Header = (props: Props) => {
       <h1 className={cn("text-3xl font-semibold ", salsa.className)}>Mocsha</h1>
       <div className="flex space-x-8">
         <Link href="/signup">
-          <Button className="px-[24px] py-[12px]">Sign Up</Button>
+        <Button className="px-[24px] py-[12px]">Sign Up</Button>
         </Link>
         <Link href="/login" >
           <Button className="bg-gradient-to-r from-[#6843CD] to-[#9943CD] text-white px-[24px] py-[12px]">

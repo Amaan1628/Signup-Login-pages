@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import React from "react";
 import { TracingBeam } from "./beam";
+import Link from "next/link";
 
 type Props = {};
 
@@ -84,9 +85,11 @@ const OngoingChallenge = (props: Props) => {
             broadening expertise for future pursuits.
           </h1>
           <div className="flex justify-center">
-            <Button className="px-[18px] py-[12px] bg-[#6843CD] text-white">
+          <Link href="/codechallenge">
+            <Button className="px-[18px] py-[12px] bg-[#6843CD] text-white"> 
               View More
             </Button>
+          </Link>
           </div>
         </div>
       </div>
