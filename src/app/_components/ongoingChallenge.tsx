@@ -14,7 +14,7 @@ const OngoingChallenge = (props: Props) => {
   return (
     // <TracingBeam className="h-full">
     <div className="relative">
-      <div className="absolute left-[650px] top-[250px] scale-[300%]">
+      <div className="absolute left-[650px] top-[250px] scale-[300%]  z-[-1]">
         <img src="/spiralGallaxy.svg" alt="" />
       </div>
       <img
