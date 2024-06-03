@@ -160,7 +160,7 @@ export default function codeChallenge(props: Props) {
                                 </div>
                                 <h2 className="text-black font-semibold">Invite</h2>
                                 <Input
-                                className="border-[#DBDBDB] rounded-[10px] placeholder:text-[#696F79] text-[#BBB5B5] h-[50px]"
+                                className="border-[#DBDBDB] rounded-[10px] placeholder:text-[#696F79] text-black h-[50px]"
                                 placeholder="Enter Email"
                                 type="text"
                                 required />

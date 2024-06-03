@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Roboto } from "next/font/google";
+import { store } from '../context/login/loginStore';
+import { Provider } from 'react-redux'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -37,14 +39,16 @@ export default function RootLayout({
           " bg-no-repeat bg-[#130736] w-full overflow-x-hidden"
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );

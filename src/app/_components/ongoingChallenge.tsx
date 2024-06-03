@@ -14,7 +14,7 @@ const OngoingChallenge = (props: Props) => {
   return (
     // <TracingBeam className="h-full">
     <div className="relative">
-      <div className="absolute left-[650px] top-[250px] scale-[300%]  z-[-1]">
+      <div className="absolute left-[650px] top-[250px] scale-[300%] z-[-1]">
         <img src="/spiralGallaxy.svg" alt="" />
       </div>
       <img
@@ -86,7 +86,7 @@ const OngoingChallenge = (props: Props) => {
           </h1>
           <div className="flex justify-center">
           <Link href="/codechallenge">
-            <Button className="px-[18px] py-[12px] bg-[#6843CD] text-white"> 
+            <Button className="px-[18px] py-[12px] bg-[#6843CD] text-white hover:bg-[#6843CD]"> 
               View More
             </Button>
           </Link>
