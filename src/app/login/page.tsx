@@ -27,9 +27,10 @@ const Login = () => {
   //   setSendOtp(true);
 
   // }
-  const otp = useSelector((state: RootState) => state.otp.value);
-  const dispatch = useDispatch();
 
+  // const otp = useSelector((state: RootState) => state.otp.value);
+  // const dispatch = useDispatch();
+  const otp = true;
   return (
     //main screen
     <div className="h-screen flex ">
@@ -97,7 +98,7 @@ const Login = () => {
               </Button>
             </div>
           ) : (
-            <div>
+            <div className="flex flex-col gap-6">
               <h2 className=" font-semibold font-Roboto text-3xl text-textPurple ">
                 Login to your account
               </h2>
@@ -115,7 +116,7 @@ const Login = () => {
               <Button
                 className="p-6"
                 variant={"authButton"}
-                onClick={() => dispatch(sendOTP())}
+                // onClick={() => dispatch(sendOTP())}
               >
                 Send OTP
               </Button>
@@ -144,7 +145,8 @@ const Login = () => {
           </Button>
           <Button 
             className="flex gap-4 justify-center border-2 bg-white border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto"
-              onClick={()=> githubLogin()}>
+              onClick={()=> githubLogin()}
+              >
             <img src="/GithubIcon.png" alt="github icon" />
             Continue with Github
           </Button>

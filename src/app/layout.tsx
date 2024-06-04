@@ -4,14 +4,14 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Roboto } from "next/font/google";
-import { store } from '../context/login/loginStore';
-import { Provider } from 'react-redux'
+import { store } from "../context/login/loginStore";
+import { Provider } from "react-redux";
 
 const roboto = Roboto({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto',
-  weight: ['100', '300', '500', '700', '900'],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+  weight: ["100", "300", "500", "700", "900"],
 });
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -32,23 +32,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
+    <html lang="en" suppressHydrationWarning={true}>
+      <body 
         className={cn(
-          poppins.className,roboto.className,
+          poppins.className,
+          roboto.className,
           " bg-no-repeat bg-[#130736] w-full overflow-x-hidden"
         )}
       >
-        <Provider store={store}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* <Provider store={store}> */}
             {children}
-          </ThemeProvider>
-        </Provider>
+          {/* </Provider> */}
+        </ThemeProvider>
       </body>
     </html>
   );

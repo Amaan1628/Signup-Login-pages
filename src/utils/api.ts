@@ -1,15 +1,43 @@
 import axios from "axios";
 
+const api = axios.create({
+  baseURL: 'http://localhost:5000',
+});
 
 export const githubAPI = async (onLoad: any) => {
-    // page.get("/", async (req,res) => {
-    try{
-      const res = await axios.get("/localhost:5000/auth");
-      const data = res.data;
-      localStorage.setItem("Authorization", `Bearer ${data.token}`);
-      onLoad()
-    } catch (error){
-      console.error(error);
-      throw error;
+
+  try {
+    const res = await api.get("/auth");
+    const data = res.data;
+    console.log(data);
+    localStorage.setItem("Authorization", `Bearer ${data.token}`);
+    onLoad();
+  }
+  //  catch (error) {
+  //   console.log("error is this",error)
+  //   console.error(error);
+  //   throw error;
+  // }
+  catch (error) {
+    console.log("error is this",error)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Error response:', error.response.data);
+        console.error('Error status:', error.response.status);
+        console.error('Error headers:', error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('Error request:', error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error message:', error.message);
+      }
+      console.error('Error config:', error.config);
+    } else {
+      // Handle non-Axios errors
+      console.error('Error:');
     }
   }
+};
