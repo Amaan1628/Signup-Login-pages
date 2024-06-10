@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface loginState {
-  value: boolean
+  otpvalue: boolean
+  loggedvalue: boolean
 }
 
 const initialState: loginState = {
-  value: false,
+  otpvalue: false,
+  loggedvalue: false
 }
 
 export const loginSlice = createSlice({
@@ -14,25 +16,21 @@ export const loginSlice = createSlice({
   initialState,
   reducers: {
     sendOTP: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value = true
+      state.otpvalue = true
     },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
+    loggedIn: (state) => {
+      {
+        state.loggedvalue = true
+      }
+    }
   },
+  
 })
 
 // Action creators are generated for each case reducer function
-export const { sendOTP,
+export const { sendOTP,loggedIn
     //  decrement,
     //   incrementByAmount
-     } = loginSlice.actions
+    } = loginSlice.actions
 
 export default loginSlice.reducer

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import loginReducer from "./slice";
+import sendOTP from "./slice";
+import loggedIn from "./slice";
 
 export const store = configureStore({
   reducer: {
-    otp: loginReducer
+    otp: sendOTP,
+    authButton: loggedIn
   },
 })
 

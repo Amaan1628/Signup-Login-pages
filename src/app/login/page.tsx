@@ -7,16 +7,18 @@ import { Button } from "@/components/ui/button";
 import { useSelector, useDispatch } from "react-redux";
 import { githubAPI } from "@/utils/api";
 import { useRouter } from "next/navigation";
-import { RootState } from "@/store/store";
-import { sendOTP } from "@/store/slice";
-import { redirect } from 'next/navigation'
-import { useLocation } from "react-router-dom";
+import { RootState, AppDispatch } from "@/store/store";
+import { loggedIn, sendOTP } from "@/store/slice";
 import { useSearchParams } from 'next/navigation'
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast"
+import { getCode } from "@/store/login/githubLogin.logic";
 
+interface MyComponentProps {
+  search: string;
+}
 
-const Login = () => {
+const Login : React.FC<MyComponentProps>  = () => {
   const { toast } = useToast()
 
   const router = useRouter()
@@ -24,31 +26,41 @@ const Login = () => {
   const search = searchParams.get('code')
   console.log('this is the code in query param', search)
 
-  useEffect( () => {
-    const getCode = async() => {
-      try{
-        const res = await axios.get(`http://localhost:5000/auth/callback?code=${search}`)
-        console.log("this is the response from backend", res)
-        localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
-        console.log("This is the Token", localStorage.getItem("Authorization"))
-        router.push("/")
-        toast({
-          title: "Successful Login",
-          description: "Continue to the Homepage",
-        })
 
-      } catch (error) {
-        console.log(error)
-        if(!localStorage.getItem("Authorization")){
-          toast({
-            title: "Unsuccessful Login",
-            description: "Retry",
-          })
-        }
-      }
+  
+  const otp = useSelector((state: RootState) => state.otp.otpvalue);
+  const dispatch = useDispatch<AppDispatch>();
+  // useEffect( () => {
+  //   const getCode = async() => {
+  //     try{
+  //       const res = await axios.get(`http://localhost:5000/auth/callback?code=${search}`)
+  //       console.log("this is the response from backend", res)
+  //       localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
+  //       console.log("This is the Token", localStorage.getItem("Authorization"))
+  //       // router.push("/")
+  //       toast({
+  //         title: "Successful Login",
+  //         description: "Continue to the Homepage",
+  //       })
+
+  //     } catch (error) {
+  //       console.log(error)
+  //       if(!localStorage.getItem("Authorization")){
+  //         toast({
+  //           title: "Unsuccessful Login",
+  //           description: "Retry",
+  //         })
+  //       }
+  //     }
+  //   }
+  //   getCode()
+  // },[search, router])
+
+  useEffect(() => {
+    if (search) {
+      dispatch(getCode());
     }
-    getCode()
-  },[search, router])
+  }, [search, dispatch]);
 
   const githubLogin = async ()=>{
     router.push('https://github.com/login/oauth/authorize?client_id=Ov23lis45NfFVnFRykZY');
@@ -63,8 +75,6 @@ const Login = () => {
   //   setSendOtp(true);
   // }
 
-  const otp = useSelector((state: RootState) => state.otp.value);
-  const dispatch = useDispatch();
 
   return (
     //main screen
@@ -151,7 +161,7 @@ const Login = () => {
               <Button
                 className="p-6"
                 variant={"authButton"}
-                onClick={() => dispatch(sendOTP())}
+                onClick={() => dispatch(sendOTP(), loggedIn())}
               >
                 Send OTP
               </Button>
