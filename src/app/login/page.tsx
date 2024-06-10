@@ -14,11 +14,7 @@ import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { getCode } from "@/store/login/githubLogin.logic";
 
-interface MyComponentProps {
-  search: string;
-}
-
-const Login: React.FC<MyComponentProps> = () => {
+const Login = () => {
   const { toast } = useToast();
 
   const router = useRouter();
@@ -78,13 +74,13 @@ const Login: React.FC<MyComponentProps> = () => {
 
   return (
     //main screen
-    <div className="h-screen flex ">
+    <div className="h-screen grid grid-cols-5 ">
       {/* //purple div */}
-      <div className="bg-gradient-to-b from-lightPurple via-mediumPurple to-darkPurple h-screen w-7/12 relative">
+      <div className="bg-gradient-to-b from-lightPurple via-mediumPurple col-span-3 to-darkPurple h-screen  relative">
         <img
           src="/spiral-login.png"
           alt="spiral"
-          className="absolute pl-[1000px]"
+          className="absolute right-0"
         />
         <img src="/dots.png" alt="dots" className="absolute" />
         <img
@@ -122,7 +118,7 @@ const Login: React.FC<MyComponentProps> = () => {
       </div>
 
       {/* //white div */}
-      <div className="flex flex-col w-5/12 bg-white ">
+      <div className="flex flex-col col-span-2  bg-white ">
         <div className="flex flex-col items-center justify-center h-full space-y-6">
           {/* //Sending OTP for Logging in */}
           {otp ? (

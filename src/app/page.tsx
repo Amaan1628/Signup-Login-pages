@@ -13,7 +13,7 @@ export default function Home() {
     <main className="w-full">
       {/* <div className="bg-gradient-to-b from-[#32206A] bg-no-repeat to-[#130736] w-full fixed top-0 h-[200px]"></div> */}
       <TracingBeam className="h-full max-w-full ">
-        <div className="w-full">
+        <div className="w-full  ">
           <Header />
           <Hero />
           <OngoingChallenge />
