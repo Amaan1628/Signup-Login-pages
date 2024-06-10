@@ -9,72 +9,72 @@ import { githubAPI } from "@/utils/api";
 import { useRouter } from "next/navigation";
 import { RootState, AppDispatch } from "@/store/store";
 import { loggedIn, sendOTP } from "@/store/slice";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation";
 import axios from "axios";
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 import { getCode } from "@/store/login/githubLogin.logic";
 
 interface MyComponentProps {
   search: string;
 }
 
-const Login : React.FC<MyComponentProps>  = () => {
-  const { toast } = useToast()
+const Login: React.FC<MyComponentProps> = () => {
+  const { toast } = useToast();
 
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const search = searchParams.get('code')
-  console.log('this is the code in query param', search)
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const search = searchParams.get("code");
+  console.log("this is the code in query param", search);
 
-
-  
   const otp = useSelector((state: RootState) => state.otp.otpvalue);
   const dispatch = useDispatch<AppDispatch>();
-  // useEffect( () => {
-  //   const getCode = async() => {
-  //     try{
-  //       const res = await axios.get(`http://localhost:5000/auth/callback?code=${search}`)
-  //       console.log("this is the response from backend", res)
-  //       localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
-  //       console.log("This is the Token", localStorage.getItem("Authorization"))
-  //       // router.push("/")
-  //       toast({
-  //         title: "Successful Login",
-  //         description: "Continue to the Homepage",
-  //       })
-
-  //     } catch (error) {
-  //       console.log(error)
-  //       if(!localStorage.getItem("Authorization")){
-  //         toast({
-  //           title: "Unsuccessful Login",
-  //           description: "Retry",
-  //         })
-  //       }
-  //     }
-  //   }
-  //   getCode()
-  // },[search, router])
-
   useEffect(() => {
-    if (search) {
-      dispatch(getCode());
-    }
-  }, [search, dispatch]);
+    const getCode = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/auth/callback?code=${search}`,
+        );
+        console.log("this is the response from backend", res);
+        localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
+        console.log("This is the Token", localStorage.getItem("Authorization"));
+        // router.push("/")
+        toast({
+          title: "Successful Login",
+          description: "Continue to the Homepage",
+        });
+      } catch (error) {
+        console.log(error);
+        if (!localStorage.getItem("Authorization")) {
+          toast({
+            title: "Unsuccessful Login",
+            description: "Retry",
+          });
+        }
+      }
+    };
+    getCode();
+  }, [search, router]);
 
-  const githubLogin = async ()=>{
-    router.push('https://github.com/login/oauth/authorize?client_id=Ov23lis45NfFVnFRykZY');
+  // useEffect(() => {
+  //   if (search) {
+  //     dispatch(getCode());
+  //   }
+  // }, [search, dispatch]);
+
+  const githubLogin = async () => {
+    router.push(
+      "https://github.com/login/oauth/authorize?client_id=Ov23lis45NfFVnFRykZY",
+    );
     // const res = await githubAPI(()=>{
-      
+
     //   router.push("/")
     // })
-  }
+  };
 
   // const [sendOtp,setSendOtp] = useState(false);
   // function handleOtp() {
   //   setSendOtp(true);
   // }
-
 
   return (
     //main screen
@@ -189,14 +189,13 @@ const Login : React.FC<MyComponentProps>  = () => {
             Continue with Google
           </Button>
           {/* <a href="https://github.com/login/oauth/authorize?client_id=Ov23lis45NfFVnFRykZY"> */}
-          <Button 
+          <Button
             className="flex gap-4 justify-center border-2 bg-white border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto"
-              onClick={githubLogin}
-              >
+            onClick={githubLogin}
+          >
             <img src="/GithubIcon.png" alt="github icon" />
             Continue with Github
           </Button>
-         
         </div>
       </div>
     </div>

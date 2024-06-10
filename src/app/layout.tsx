@@ -7,7 +7,7 @@ import { Roboto } from "next/font/google";
 // import { store } from "../store/login/loginStore";
 import { Provider } from "react-redux";
 import { StoreProvider } from "@/store/StoreProvider";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -39,7 +39,7 @@ export default function RootLayout({
         className={cn(
           poppins.className,
           roboto.className,
-          " bg-no-repeat bg-[#130736] w-full overflow-x-hidden"
+          " bg-no-repeat bg-[#130736] w-full overflow-x-hidden",
         )}
       >
         <StoreProvider>
