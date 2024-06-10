@@ -5,19 +5,22 @@ const api = axios.create({
 });
 
 export const githubAPI = async (onLoad: any) => {
-
+  console.log("click is working")
   try {
-    const res = await api.get("/auth");
+    console.log("inside try")
+    const res = await api.get("/auth/callback");
     const data = res.data;
-    console.log(data);
+    console.log("this is data",data);
     localStorage.setItem("Authorization", `Bearer ${data.token}`);
     onLoad();
   }
+
   //  catch (error) {
   //   console.log("error is this",error)
   //   console.error(error);
   //   throw error;
   // }
+  
   catch (error) {
     console.log("error is this",error)
     if (axios.isAxiosError(error)) {

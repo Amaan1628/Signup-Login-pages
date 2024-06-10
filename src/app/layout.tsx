@@ -4,8 +4,10 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Roboto } from "next/font/google";
-import { store } from "../context/login/loginStore";
+// import { store } from "../store/login/loginStore";
 import { Provider } from "react-redux";
+import { StoreProvider } from "@/store/StoreProvider";
+import { Toaster } from "@/components/ui/toaster"
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,23 +35,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body 
+      <body
         className={cn(
           poppins.className,
           roboto.className,
           " bg-no-repeat bg-[#130736] w-full overflow-x-hidden"
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {/* <Provider store={store}> */}
+        <StoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* <Provider store={store}> */}
             {children}
-          {/* </Provider> */}
-        </ThemeProvider>
+            {/* </Provider> */}
+            <Toaster />
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

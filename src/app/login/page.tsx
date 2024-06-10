@@ -1,36 +1,81 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import OtpVerification from "./_components/otpVerification";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useSelector, useDispatch } from "react-redux";
-import { sendOTP } from "@/context/login/loginSlice";
-import type { RootState } from "@/context/login/loginStore";
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import { githubAPI } from "@/utils/api";
 import { useRouter } from "next/navigation";
+import { RootState, AppDispatch } from "@/store/store";
+import { loggedIn, sendOTP } from "@/store/slice";
+import { useSearchParams } from 'next/navigation'
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast"
+import { getCode } from "@/store/login/githubLogin.logic";
 
-const Login = () => {
+interface MyComponentProps {
+  search: string;
+}
+
+const Login : React.FC<MyComponentProps>  = () => {
+  const { toast } = useToast()
+
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const search = searchParams.get('code')
+  console.log('this is the code in query param', search)
+
+
+  
+  const otp = useSelector((state: RootState) => state.otp.otpvalue);
+  const dispatch = useDispatch<AppDispatch>();
+  // useEffect( () => {
+  //   const getCode = async() => {
+  //     try{
+  //       const res = await axios.get(`http://localhost:5000/auth/callback?code=${search}`)
+  //       console.log("this is the response from backend", res)
+  //       localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
+  //       console.log("This is the Token", localStorage.getItem("Authorization"))
+  //       // router.push("/")
+  //       toast({
+  //         title: "Successful Login",
+  //         description: "Continue to the Homepage",
+  //       })
+
+  //     } catch (error) {
+  //       console.log(error)
+  //       if(!localStorage.getItem("Authorization")){
+  //         toast({
+  //           title: "Unsuccessful Login",
+  //           description: "Retry",
+  //         })
+  //       }
+  //     }
+  //   }
+  //   getCode()
+  // },[search, router])
+
+  useEffect(() => {
+    if (search) {
+      dispatch(getCode());
+    }
+  }, [search, dispatch]);
 
   const githubLogin = async ()=>{
-    const res = await githubAPI(()=>{
-      router.push("/")
-    })
+    router.push('https://github.com/login/oauth/authorize?client_id=Ov23lis45NfFVnFRykZY');
+    // const res = await githubAPI(()=>{
+      
+    //   router.push("/")
+    // })
   }
 
   // const [sendOtp,setSendOtp] = useState(false);
-
   // function handleOtp() {
   //   setSendOtp(true);
-
   // }
 
-  // const otp = useSelector((state: RootState) => state.otp.value);
-  // const dispatch = useDispatch();
-  const otp = true;
+
   return (
     //main screen
     <div className="h-screen flex ">
@@ -81,7 +126,7 @@ const Login = () => {
         <div className="flex flex-col items-center justify-center h-full space-y-6">
           {/* //Sending OTP for Logging in */}
           {otp ? (
-            <div>
+            <>
               <OtpVerification />
               <div className="flex justify-end w-[55%]">
                 <h4 className="text-[#11068C] font-semibold text-[14px] font-regular font-Roboto">
@@ -96,9 +141,9 @@ const Login = () => {
               <Button className="p-6" variant={"authButton"}>
                 Log in
               </Button>
-            </div>
+            </>
           ) : (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col items-center gap-6">
               <h2 className=" font-semibold font-Roboto text-3xl text-textPurple ">
                 Login to your account
               </h2>
@@ -116,11 +161,11 @@ const Login = () => {
               <Button
                 className="p-6"
                 variant={"authButton"}
-                // onClick={() => dispatch(sendOTP())}
+                onClick={() => dispatch(sendOTP(), loggedIn())}
               >
                 Send OTP
               </Button>
-              <div className="flex justify-end w-[55%]">
+              <div className="flex justify-end">
                 <h4 className="text-textColor  text-[14px] font-regular font-Roboto">
                   Dont have an account?{" "}
                   <Link href="/signup">
@@ -143,13 +188,15 @@ const Login = () => {
             <img src="/GoogleIcon.png" alt="google icon" />
             Continue with Google
           </Button>
+          {/* <a href="https://github.com/login/oauth/authorize?client_id=Ov23lis45NfFVnFRykZY"> */}
           <Button 
             className="flex gap-4 justify-center border-2 bg-white border-borderColor w-[482px] rounded-[12px] p-6 text-textColor text-[16px] font-medium font-Roboto"
-              onClick={()=> githubLogin()}
+              onClick={githubLogin}
               >
             <img src="/GithubIcon.png" alt="github icon" />
             Continue with Github
           </Button>
+         
         </div>
       </div>
     </div>
