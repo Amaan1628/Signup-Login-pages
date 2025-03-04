@@ -15,7 +15,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { getCode } from "@/store/login/githubLogin.logic";
 
 const Login = () => {
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -24,32 +24,40 @@ const Login = () => {
 
   const otp = useSelector((state: RootState) => state.otp.otpvalue);
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
+  
+  // useEffect(() => {
     const getCode = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/auth/callback?code=${search}`,
-        );
-        console.log("this is the response from backend", res);
-        localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
+        // const res = await axios.get(
+        //   `http://localhost:5000/auth/callback?code=${search}`,
+        // );
+        // console.log("this is the response from backend", res);
+        // localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
+        // console.log("This is the Token", localStorage.getItem("Authorization"));
+
+        const response = await fetch(`http://localhost:5000/auth/callback?code=${search}`)
+        const data = await response.json();
+        console.log("this is the response from backend", data);
+        localStorage.setItem("Authorization", `Bearer ${data.token}`);
         console.log("This is the Token", localStorage.getItem("Authorization"));
+
         // router.push("/")
-        toast({
-          title: "Successful Login",
-          description: "Continue to the Homepage",
-        });
+        // toast({
+        //   title: "Successful Login",
+        //   description: "Continue to the Homepage",
+        // });
       } catch (error) {
-        console.log(error);
-        if (!localStorage.getItem("Authorization")) {
-          toast({
-            title: "Unsuccessful Login",
-            description: "Retry",
-          });
-        }
+        console.log("THERE IS AN ERROR",error);
+        // if (!localStorage.getItem("Authorization")) {
+        //   toast({
+        //     title: "Unsuccessful Login",
+        //     description: "Retry",
+        //   });
+        // }
       }
     };
-    getCode();
-  }, [search, router]);
+  //   getCode();
+  // }, []);
 
   // useEffect(() => {
   //   if (search) {
@@ -61,60 +69,87 @@ const Login = () => {
     router.push(
       "https://github.com/login/oauth/authorize?client_id=Ov23lis45NfFVnFRykZY",
     );
-    // const res = await githubAPI(()=>{
-
-    //   router.push("/")
-    // })
+    getCode();
   };
-
-  // const [sendOtp,setSendOtp] = useState(false);
-  // function handleOtp() {
-  //   setSendOtp(true);
-  // }
 
   return (
     //main screen
     <div className="h-screen grid grid-cols-5 ">
       {/* //purple div */}
-      <div className="bg-gradient-to-b from-lightPurple via-mediumPurple col-span-3 to-darkPurple h-screen  relative">
+      <div className="bg-gradient-to-b from-lightPurple via-mediumPurple to-darkPurple col-span-3 h-screen relative">
         <img
           src="/spiral-login.png"
           alt="spiral"
           className="absolute right-0"
         />
-        <img src="/dots.png" alt="dots" className="absolute" />
+        <img src="/dots.png" alt="dots" className="" />
         <img
           src="/outerEllipse.png"
           alt="out ellipse"
-          className="absolute pt-[36px] h-[100%] "
+          className="
+          absolute left-0 top-[41px] h-[95%]"
+          // pt-[36px]
         />
         <img
           src="/innerEllipse.png"
           alt="in ellipse"
-          className="absolute pt-[176px] "
+          className="absolute bottom-[120px] h-[70%] left-0 monitor:bottom-[170px] monitor:h-[70%]"
+          // pt-[176px]
         />
         <img
           src="/blurEllipse.png"
           alt="blur img"
-          className="absolute pl-[972px] pt-[760px]"
+          className="absolute right-0 bottom-0 h-[200px] monitor:h-[300px]"
         />
 
-        <h1 className="absolute pl-[300px] pt-[170px] w-[800px] z-10  font-RobotoSerif font-semibold text-[48px] text-white">
+        <h1 className="absolute pl-[340px] pt-[70px] w-[800px] z-10 font-RobotoSerif font-semibold text-[48px] text-white
+        monitor:pl-[500px] monitor:pt-[140px] monitor:w-[1000px] ">
           Embark on Your Learning Adventure with
           <span className="font-Syne font-bold text-[56px]"> Mocsha</span>
         </h1>
         <img
-          className="absolute z-10 pt-[446px] pl-[250px]"
+          className="absolute z-10 pt-[337px] pl-[250px] monitor:pl-[350px] monitor:pt-[395px] monitor:w-[1100px]"
           src="/girlImage.png"
           alt="girl"
         />
         <img
-          className="absolute z-10 pt-[596px] pl-[250px]"
+          className="absolute z-10 pt-[526px] pl-[250px] monitor:pl-[370px] monitor:pt-[630px] monitor:w-[1200px]"
           src="/imageEllipse.png"
           alt="ellipse"
         />
 
-        <div className="flex flex-col absolute mt-[70px] ml-[150px] h-[805px] w-[842px] rounded-xl bg-white shadow-lg  opacity-25"></div>
+        <div className="flex flex-col absolute ml-[150px] mt-[-40px] h-[805px] w-[842px] rounded-xl bg-white shadow-lg opacity-25
+         monitor:h-[905px] monitor:w-[1000px] monitor:mt-[60px] monitor:ml-[250px] "></div>
+          {/* <h1 className=" w-[800px] z-100 font-RobotoSerif font-semibold text-[48px] text-slate-400">
+            Embark on Your Learning Adventure with
+            <span className="font-Syne z-100 font-bold text-[56px]"> Mocsha</span>
+          </h1>
+          <img
+            className="z-100 pt-[446px] pl-[250px]"
+            src="/girlImage.png"
+            alt="girl"
+          />
+          <img
+            className="z-100 pt-[596px] pl-[250px]"
+            src="/imageEllipse.png"
+            alt="ellipse"
+          /> */}
+
+          {/* <h1 className="absolute pl-[300px] pt-[170px] w-[800px] z-10  font-RobotoSerif font-semibold text-[48px] text-white">
+          Embark on Your Learning Adventure with
+          <span className="font-Syne font-bold text-[56px]"> Mocsha</span>
+          </h1>
+          <img
+            className="absolute z-10 pt-[446px] pl-[250px]"
+            src="/girlImage.png"
+            alt="girl"
+          />
+          <img
+            className="absolute z-10 pt-[596px] pl-[250px]"
+            src="/imageEllipse.png"
+            alt="ellipse"
+          /> */}
+        
       </div>
 
       {/* //white div */}

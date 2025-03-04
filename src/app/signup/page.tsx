@@ -15,20 +15,20 @@ const signup = () => {
 
     return (
     //main screen
-    <div className="h-screen flex ">
+    <div className="h-screen grid grid-cols-5 ">
         {/* //purple div */}
-        <div className="bg-gradient-to-b from-lightPurple via-mediumPurple to-darkPurple h-screen w-7/12 relative">
+        <div className="bg-gradient-to-b from-lightPurple via-mediumPurple to-darkPurple col-span-3 h-screen relative">
 
             <img src="/spiral-login.png" alt="spiral" 
-            className="absolute pl-[1000px]"/>
+            className="absolute right-0"/>
             <img src="/dots.png" alt="dots" 
             className="absolute" />
             <img src="/outerEllipse.png" alt="out ellipse" 
             className="absolute pt-[36px] h-[100%] " />
             <img src="/innerEllipse.png" alt="in ellipse" 
-            className="absolute pt-[176px] " />
+            className="absolute top-[18vh] " />
             <img src="/blurEllipse.png" alt="blur img" 
-            className="absolute pl-[972px] pt-[760px]" />
+            className="absolute right-[5vw] bottom-[4vh]" />
             
             <h1 className="absolute pl-[300px] pt-[170px] w-[800px] z-10  font-RobotoSerif font-semibold text-[48px] text-white">
                 Embark on Your Learning Adventure with 
@@ -42,7 +42,7 @@ const signup = () => {
         </div>
 
         {/* //white div */}
-        <div className="flex flex-col w-5/12 bg-white ">
+        <div className="flex flex-col col-span-2  bg-white ">
             <div className="flex flex-col items-center justify-center h-full space-y-6">
                 {sendOtp ? 
                 <>

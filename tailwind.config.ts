@@ -12,6 +12,11 @@ const config = {
   ],
   prefix: "",
   theme: {
+    screens: {
+      'monitor': '2250px',
+      'windows': "2000px",
+      'mac': '1000px'
+    },
     container: {
       center: true,
       padding: "2rem",
